@@ -1,0 +1,38 @@
+footer {
+  background-color: #393939;
+  color: white;
+  padding: 50px 35px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+h1{  
+  transform: translateY(-3px);
+}
+
+.logo{
+  display: flex;
+  gap: 15px;
+}
+
+.logo img{
+  height: 20px;
+  object-fit: cover;
+}
+
+nav ul {
+  list-style-type: none;
+}
+
+nav ul li {
+  display: inline;
+  margin-right: 15px;
+}
+
+.contatos{
+  padding: 30px;
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}

@@ -1,0 +1,38 @@
+div{
+    background-color: white;
+    color: black;
+    min-height: 50vh;
+    padding: 20px;
+}
+
+h1{
+    padding-left: 100px;
+}
+
+.promocoes ul {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    justify-content: center;
+    padding: 10px 10px;
+    gap: 10px;
+}
+
+li{
+    max-width: 300px;
+    max-height: 250px;
+    padding-left: 10px;
+}
+
+li a {
+    max-width: inherit;
+    max-height: inherit;
+    display: block;
+}
+
+li a img {
+    max-width: inherit;
+    max-height: inherit;
+    object-fit: cover;
+    object-position: center center;
+}

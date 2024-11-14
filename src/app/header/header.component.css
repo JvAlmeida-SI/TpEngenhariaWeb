@@ -1,0 +1,43 @@
+header {
+    background: url("assets/fundoHeader.png");
+    background-size: cover;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 50px;
+  }
+
+h1{
+  margin-bottom: 15px;
+  transform: translateY(-3px);
+}
+
+.logo{
+  display: flex;
+  gap: 15px;
+}
+
+.logo img{
+  height: 20px;
+  object-fit: cover;
+}
+
+img{
+  display: flex;  
+  justify-content: end;
+}
+
+nav ul {
+  list-style-type: none;
+}
+
+nav ul li {
+  display: inline;
+  margin-right: 20px;
+  
+  a {
+      color: white;
+      text-decoration: none;
+  }
+}

@@ -1,0 +1,42 @@
+div{
+    background: url("assets/lancamento.png");
+    background-size: cover;
+    height: calc(100dvh - 80px);
+    min-height: 320px;
+    background-position: center center;
+    color: white;
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 30px;
+}
+
+@keyframes fadein {
+    0%{
+        transform: translateY(-25px);
+        opacity: 0;
+    }
+    100%{
+        transform: translateY(0px);
+        opacity: 1;
+    }
+}
+
+h1{    
+   animation: fadein .5s linear both;    
+}
+
+button{
+    max-width: fit-content;
+    background-color: #7A5CFA;
+    animation: fadein .5s .2s linear both;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    color: white;
+}
+
+button:hover{
+    cursor: pointer;
+}

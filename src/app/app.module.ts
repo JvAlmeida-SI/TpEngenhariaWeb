@@ -3,14 +3,30 @@ import { NgModule } from '@angular/core';
 
 
 import { AppComponent } from './app.component';
+import { HeaderComponent } from './header/header.component';
+import { FooterComponent } from './footer/footer.component';
+import { LancamentoComponent } from './lancamento/lancamento.component';
+import { CartazComponent } from './cartaz/cartaz.component';
+import { PromocoesComponent } from './promocoes/promocoes.component';
+import { CadastroComponent } from './cadastro/cadastro.component';
+import { HomePageComponent } from './home-page/home-page.component';
+import { AppRoutingModule } from './/app-routing.module';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HeaderComponent,
+    FooterComponent,
+    LancamentoComponent,
+    CartazComponent,
+    PromocoesComponent,
+    CadastroComponent,
+    HomePageComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

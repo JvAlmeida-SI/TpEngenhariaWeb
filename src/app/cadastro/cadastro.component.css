@@ -1,0 +1,52 @@
+*{    
+  /* background: url('assets/fundoCadastro.png');
+  background-size: cover;
+  color: white; */
+}
+
+@keyframes fadein {
+    0%{
+        transform: translateY(-25px);
+        opacity: 0;
+    }
+    100%{
+        transform: translateY(0px);
+        opacity: 1;
+    }
+}
+
+.cadastro{
+    animation: fadein .5s linear both; 
+    height: 100vh; 
+    display: flex; 
+    justify-content: flex-start; 
+    align-items: center; 
+    flex-direction: column;
+    text-align: center;
+}
+
+h1{
+    font-size: 22px;
+    padding-top: 20px;
+}
+
+select{ 
+    margin-top: 20px; 
+    padding: 10px; 
+    font-size: 16px; 
+    border-radius: 5px; 
+    border: 1px solid black;
+}
+
+select:hover{
+    cursor: pointer;
+}
+
+button{
+    background-color: #7A5CFA;
+    color: white;
+    margin-top: 20px;
+    border-radius: 5px;
+    pointer-events: auto;
+    cursor: pointer;
+}
