@@ -17,7 +17,7 @@
 
 .cadastro{
     animation: fadein .5s linear both; 
-    height: 100vh; 
+    min-height: 100vh; 
     display: flex; 
     justify-content: flex-start; 
     align-items: center; 

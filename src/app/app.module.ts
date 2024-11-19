@@ -11,6 +11,7 @@ import { PromocoesComponent } from './promocoes/promocoes.component';
 import { CadastroComponent } from './cadastro/cadastro.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { AppRoutingModule } from './/app-routing.module';
+import { CadastroUsuarioComponent } from './cadastro-usuario/cadastro-usuario.component';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { AppRoutingModule } from './/app-routing.module';
     CartazComponent,
     PromocoesComponent,
     CadastroComponent,
-    HomePageComponent
+    HomePageComponent,
+    CadastroUsuarioComponent
   ],
   imports: [
     BrowserModule,

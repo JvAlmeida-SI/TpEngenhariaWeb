@@ -3,19 +3,17 @@
     <h1>Escolha o cadastro que deseja fazer</h1>
     <select (change)="onOptionChange($event)">    
       <option value="" disabled>Selecione uma opção</option>
-      <option value="cli">Cliente</option>
-      <option value="col">Colaborador</option>
-      <option value="adm">Administrador</option>
+      <option value="cliente">Cliente</option>
+      <option value="colaborador">Colaborador</option>
+      <option value="administrador">Administrador</option>
       <option value="filme">Filme</option>
       <option value="produto">Produto</option>
     </select>
 
     <!-- <button (click)="renderizarCadastro()">Prosseguir</button> -->
 
-    <div *ngIf="selectedOption === 'cli'">
-      <select name="testando" id="">        
-        <option value="123">Cliente</option>
-      </select>
+    <div *ngIf="selectedOption === 'cliente' || selectedOption ===  'colaborador' || selectedOption === 'administrador'">    
+      <app-cadastro-usuario></app-cadastro-usuario>
     </div>
 
   </div>
