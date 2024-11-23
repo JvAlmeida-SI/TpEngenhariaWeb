@@ -1,0 +1,37 @@
+<div class="content">
+  <form id="cadastroProduto">
+      <div class="conjunto">
+        <div class="input">
+          <label for="nome">Nome:</label>
+          <input type="text" id="nome" name="nome" required><br><br>
+        </div>
+
+        <div class="input">
+          <label for="preco">Preço:</label>
+          <input type="text" id="preco" name="preco" required><br><br>
+        </div>
+      </div>
+      
+      <div class="conjunto">
+        <div class="input">
+          <label for="quantidade">Quantidade:</label>
+          <input type="text" id="quantidade" name="quantidade" required><br><br>
+        </div>
+
+        <div class="input">
+          <label for="dataValidade">Data de validade:</label>
+          <input type="text" id="dataValidade" name="dataValidade" required><br><br>
+        </div>
+      </div>
+
+    <button type="submit">Cadastrar</button>
+  </form>
+
+  <script>
+      document.getElementById('cadastroForm').addEventListener('submit', function(event) {
+          event.preventDefault();
+          // Aqui você pode adicionar a lógica para processar o formulário
+          alert('Cadastro efetuado com sucesso!');
+      });
+  </script>
+</div>

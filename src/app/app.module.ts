@@ -12,6 +12,8 @@ import { CadastroComponent } from './cadastro/cadastro.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { AppRoutingModule } from './/app-routing.module';
 import { CadastroUsuarioComponent } from './cadastro-usuario/cadastro-usuario.component';
+import { CadastroFilmeComponent } from './cadastro-filme/cadastro-filme.component';
+import { CadastroProdutoComponent } from './cadastro-produto/cadastro-produto.component';
 
 
 @NgModule({
@@ -24,7 +26,9 @@ import { CadastroUsuarioComponent } from './cadastro-usuario/cadastro-usuario.co
     PromocoesComponent,
     CadastroComponent,
     HomePageComponent,
-    CadastroUsuarioComponent
+    CadastroUsuarioComponent,
+    CadastroFilmeComponent,
+    CadastroProdutoComponent
   ],
   imports: [
     BrowserModule,

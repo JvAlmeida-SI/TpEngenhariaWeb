@@ -10,10 +10,16 @@
       <option value="produto">Produto</option>
     </select>
 
-    <!-- <button (click)="renderizarCadastro()">Prosseguir</button> -->
-
     <div *ngIf="selectedOption === 'cliente' || selectedOption ===  'colaborador' || selectedOption === 'administrador'">    
       <app-cadastro-usuario></app-cadastro-usuario>
+    </div>
+
+    <div *ngIf="selectedOption === 'filme'">    
+      <app-cadastro-filme></app-cadastro-filme>
+    </div>
+
+    <div *ngIf="selectedOption === 'produto'">    
+      <app-cadastro-produto></app-cadastro-produto>
     </div>
 
   </div>
