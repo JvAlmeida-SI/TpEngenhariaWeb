@@ -5,7 +5,6 @@
       <option value="" disabled>Selecione uma opção</option>
       <option value="cliente">Cliente</option>
       <option value="colaborador">Colaborador</option>
-      <option value="administrador">Administrador</option>
       <option value="filme">Filme</option>
       <option value="produto">Produto</option>
     </select>
@@ -14,7 +13,7 @@
       <app-cadastro-cliente></app-cadastro-cliente>
     </div>
 
-    <div *ngIf="selectedOption ===  'colaborador' || selectedOption === 'administrador'">
+    <div *ngIf="selectedOption ===  'colaborador'">
       <app-cadastro-colaborador></app-cadastro-colaborador>
     </div>
 

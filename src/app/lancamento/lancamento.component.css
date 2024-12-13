@@ -1,13 +1,9 @@
 div{
-    background: url("assets/lancamento.png");
     background-size: cover;
-    height: calc(100dvh - 80px);
-    min-height: 320px;
     background-position: center center;
     color: white;
     padding: 50px;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     gap: 30px;
 }
@@ -29,12 +25,13 @@ h1{
 
 button{
     max-width: fit-content;
-    background-color: #7A5CFA;
+    background-color: black;
     animation: fadein .5s .2s linear both;
     padding: 10px 20px;
     border-radius: 5px;
     border: none;
     color: white;
+    align-items: center;
 }
 
 button:hover{

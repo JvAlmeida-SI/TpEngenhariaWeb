@@ -1,10 +1,20 @@
-<div id="promocoes">
-  <h1>Promoções</h1>
-  <div class="promocoes">
-    <ul>
-      <li><a href="#"> <img src="./assets/promocoes/promoIngresso.png" alt="promo3"></a></li>
-      <li><a href="#"> <img src="./assets/promocoes/promoRefri.png" alt="promo1"></a></li>
-      <li><a href="#"> <img src="./assets/promocoes/promoPipoca.png" alt="promo2"></a></li>
-    </ul>
+<div>
+  <hr>
+  <h1>Produtos a venda</h1>
+  <div class="produtos">
+    <table border="1">
+      <thead>
+        <tr>
+          <th>Produto</th>
+          <th>Preço</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let product of products">
+          <td>{{ product.name }}</td>
+          <td>{{ product.price }}</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </div>

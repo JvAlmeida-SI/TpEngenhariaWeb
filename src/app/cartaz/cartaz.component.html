@@ -1,10 +1,23 @@
 <div>
   <h1>Em cartaz</h1>
   <div class="filmes">
-    <ul>
-      <li><a href="#"> <img src="./assets/robo.png" alt="Filme1"></a></li>
-      <li><a href="#"> <img src="./assets/venom.png" alt="Filme2"></a></li>
-      <li><a href="#"> <img src="./assets/sorria.png" alt="Filme3"></a></li>
-    </ul>
+      <table border="1">
+        <thead>
+          <tr>
+            <th>Título</th>
+            <th>Sinopse</th>
+            <th>Duração</th>
+            <th>Idade Mínima</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let movie of movies">
+            <td>{{ movie.title }}</td>
+            <td>{{ movie.synopsis }}</td>
+            <td>{{ movie.duration }}</td>
+            <td>{{ movie.age }}</td>
+          </tr>
+        </tbody>
+    </table>
   </div>
 </div>
