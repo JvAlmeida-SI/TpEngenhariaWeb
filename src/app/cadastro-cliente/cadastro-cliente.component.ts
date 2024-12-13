@@ -7,8 +7,14 @@ import { ApiService } from '../api.service';
   styleUrls: ['./cadastro-cliente.component.css']
 })
 export class CadastroClienteComponent implements OnInit {
-  items: any[] = [];
-  newItem: any = {};
+  listPerson: any[] = [];
+  person: any = {
+    fistName: '',
+    lastName: '',
+    cpf: '',
+    password: '',
+    passwordConfirmation: '',
+  };
   editingItem: any = null;
 
   constructor(private apiService: ApiService) {}
@@ -20,7 +26,7 @@ export class CadastroClienteComponent implements OnInit {
   fetchUser(): void {
     this.apiService.getData('client').subscribe(
       (data) => {
-        this.items = data;
+        this.person = data;
       },
       (error) => {
         console.error('Erro ao buscar itens:', error);
@@ -30,10 +36,10 @@ export class CadastroClienteComponent implements OnInit {
 
   // Create item
   addUser(): void {
-    this.apiService.postData('client', this.newItem).subscribe(
+    this.apiService.postData('client', this.person).subscribe(
       (data) => {
-        this.items.push(data);
-        this.newItem = {}; // Limpa o formulário
+        this.person.push(data);
+        this.person = {}; // Limpa o formulário
       },
       (error) => {
         console.error('Erro ao adicionar item:', error);
@@ -50,9 +56,9 @@ export class CadastroClienteComponent implements OnInit {
     if (this.editingItem) {
       this.apiService.updateData(this.editingItem.id, this.editingItem).subscribe(
         (data) => {
-          const index = this.items.findIndex((i) => i.id === this.editingItem.id);
+          const index = this.person.findIndex((i) => i.id === this.editingItem.id);
           if (index !== -1) {
-            this.items[index] = data;
+            this.person[index] = data;
           }
           this.editingItem = null; // Fecha o modo de edição
         },
@@ -67,7 +73,7 @@ export class CadastroClienteComponent implements OnInit {
   deleteMovie(id: string): void {
     this.apiService.deleteData('client', id).subscribe(
       () => {
-        this.items = this.items.filter((item) => item.id !== id);
+        this.person = this.person.filter((item) => item.id !== id);
       },
       (error) => {
         console.error('Erro ao deletar item:', error);
