@@ -1,0 +1,72 @@
+@keyframes fadein {
+    0% {
+        transform: translateY(-25px);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateY(0px);
+        opacity: 1;
+    }
+}
+
+.content {
+    animation: fadein .5s linear both;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    margin: 0;
+    margin-top: 50px;
+    font-family: Arial, sans-serif;
+}
+
+form {
+    gap: 10px;
+    width: 100%;
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+label {
+    text-align: right;
+    padding-right: 10px;
+}
+
+input {
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    width: 100%;
+    text-transform: uppercase;
+    box-sizing: border-box;
+}
+
+button {
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    background-color: #4CAF50;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+.conjunto {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.input {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    min-width: max-content;
+}

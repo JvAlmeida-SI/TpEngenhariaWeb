@@ -11,7 +11,7 @@ export class CadastroComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-  } 
+  }
 
   renderizarCadastro(){
     console.log(this.selectedOption);

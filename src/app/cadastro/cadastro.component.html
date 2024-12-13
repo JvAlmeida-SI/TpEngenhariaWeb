@@ -10,8 +10,12 @@
       <option value="produto">Produto</option>
     </select>
 
-    <div *ngIf="selectedOption === 'cliente' || selectedOption ===  'colaborador' || selectedOption === 'administrador'">    
-      <app-cadastro-usuario></app-cadastro-usuario>
+    <div *ngIf="selectedOption === 'cliente'">    
+      <app-cadastro-cliente></app-cadastro-cliente>
+    </div>
+
+    <div *ngIf="selectedOption ===  'colaborador' || selectedOption === 'administrador'">
+      <app-cadastro-colaborador></app-cadastro-colaborador>
     </div>
 
     <div *ngIf="selectedOption === 'filme'">    

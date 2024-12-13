@@ -1,13 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiService } from '../api.service';
+import { ApiService } from '../api.service';	
 
 @Component({
-  selector: 'app-cadastro-produto',
-  templateUrl: './cadastro-produto.component.html',
-  styleUrls: ['./cadastro-produto.component.css']
+  selector: 'app-cadastro-colaborador',
+  templateUrl: './cadastro-colaborador.component.html',
+  styleUrls: ['./cadastro-colaborador.component.css']
 })
-export class CadastroProdutoComponent implements OnInit {
-
+export class CadastroColaboradorComponent implements OnInit {
   items: any[] = [];
   newItem: any = {};
   editingItem: any = null;
@@ -15,12 +14,11 @@ export class CadastroProdutoComponent implements OnInit {
   constructor(private apiService: ApiService) {}
 
   ngOnInit(): void {
-    this.fetchProducts();
-  }   
+  }
 
   // Fetch all items
-  fetchProducts(): void {
-    this.apiService.getData('products').subscribe(
+  fetchUser(): void {
+    this.apiService.getData('employees').subscribe(
       (data) => {
         this.items = data;
       },
@@ -31,8 +29,8 @@ export class CadastroProdutoComponent implements OnInit {
   }
 
   // Create item
-  addProduct(): void {
-    this.apiService.postData('product', this.newItem).subscribe(
+  addUser(): void {
+    this.apiService.postData('employee', this.newItem).subscribe(
       (data) => {
         this.items.push(data);
         this.newItem = {}; // Limpa o formulário
@@ -48,7 +46,7 @@ export class CadastroProdutoComponent implements OnInit {
     this.editingItem = { ...item }; // Cria uma cópia para edição
   }
 
-  updateProduct(): void {
+  updateUser(): void {
     if (this.editingItem) {
       this.apiService.updateData(this.editingItem.id, this.editingItem).subscribe(
         (data) => {
@@ -66,8 +64,8 @@ export class CadastroProdutoComponent implements OnInit {
   }
 
   // Delete item
-  deleteProduct(id: string): void {
-    this.apiService.deleteData('product', id).subscribe(
+  deleteMovie(id: string): void {
+    this.apiService.deleteData('employee', id).subscribe(
       () => {
         this.items = this.items.filter((item) => item.id !== id);
       },
@@ -75,6 +73,5 @@ export class CadastroProdutoComponent implements OnInit {
         console.error('Erro ao deletar item:', error);
       }
     );
-  }  
-
+  }
 }

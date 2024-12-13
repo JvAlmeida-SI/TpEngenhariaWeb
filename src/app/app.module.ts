@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { ApiService } from './api.service';
 
 import { AppRoutingModule } from './app-routing.module';
 import { HomePageComponent } from './home-page/home-page.component';
@@ -11,9 +13,10 @@ import { LancamentoComponent } from './lancamento/lancamento.component';
 import { CartazComponent } from './cartaz/cartaz.component';
 import { PromocoesComponent } from './promocoes/promocoes.component';
 import { CadastroComponent } from './cadastro/cadastro.component';
-import { CadastroUsuarioComponent } from './cadastro-usuario/cadastro-usuario.component';
 import { CadastroFilmeComponent } from './cadastro-filme/cadastro-filme.component';
 import { CadastroProdutoComponent } from './cadastro-produto/cadastro-produto.component';
+import { CadastroClienteComponent } from './cadastro-cliente/cadastro-cliente.component';
+import { CadastroColaboradorComponent } from './cadastro-colaborador/cadastro-colaborador.component';
 
 @NgModule({
   declarations: [
@@ -25,16 +28,18 @@ import { CadastroProdutoComponent } from './cadastro-produto/cadastro-produto.co
     PromocoesComponent,
     CadastroComponent,
     HomePageComponent,
-    CadastroUsuarioComponent,
     CadastroFilmeComponent,
-    CadastroProdutoComponent
+    CadastroProdutoComponent,
+    CadastroClienteComponent,
+    CadastroColaboradorComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    HttpClientModule,
   ],
-  providers: [],
+  providers: [ApiService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
