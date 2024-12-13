@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { FormBuilder } from '@angular/forms';
 
 @Injectable()
 
 export class ApiService {
-  private apiUrl: string = 'http://localhost:8080';
+  private apiUrl: string = 'https://6479-177-74-239-153.ngrok-free.app';
 
   constructor(private http: HttpClient) { }
 
@@ -19,7 +20,7 @@ export class ApiService {
   }
 
   // Método para enviar dados a um endpoint
-  postData(endpoint: string, data: any): Observable<any> {
+  postData(endpoint: string, data: FormBuilder): Observable<any> {
     return this.http.post(`${this.apiUrl}/${endpoint}`, data);
   }
 

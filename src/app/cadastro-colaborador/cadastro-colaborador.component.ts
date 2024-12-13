@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ApiService } from '../api.service';	
 
 @Component({
@@ -7,71 +8,107 @@ import { ApiService } from '../api.service';
   styleUrls: ['./cadastro-colaborador.component.css']
 })
 export class CadastroColaboradorComponent implements OnInit {
-  items: any[] = [];
-  newItem: any = {};
-  editingItem: any = null;
+  cadastroForm: FormGroup;
+  listEmployee: any[] = [];
+  employee: any = {
+    name: '',
+    lastName: '',
+    cpf: '',
+    password: '',
+    passwordConfirmation: '',
+  };
+  editingUser: any = null;
 
-  constructor(private apiService: ApiService) {}
-
-  ngOnInit(): void {
+  constructor(private formBuilder: FormBuilder, private apiService: ApiService) {
+    this.cadastroForm = this.formBuilder.group({
+      firstName: ['', [Validators.required]],
+      lastName: ['', [Validators.required]],
+      cpf: ['', [Validators.required, Validators.pattern(/^\d{11}$/)]],
+      isAdmin: [false, [Validators.required]],
+      password: ['', [Validators.required, Validators.minLength(6)]],      
+      passwordConfirmation: ['', [Validators.required, Validators.minLength(6)]],
+      admin: [false, [Validators.required]],
+    });
   }
 
-  // Fetch all items
-  fetchUser(): void {
-    this.apiService.getData('employees').subscribe(
+  ngOnInit(): void {}
+
+  // GET - Busca todos os usuários
+  fetchUsers(): any {
+    this.apiService.getData('employee').subscribe(
       (data) => {
-        this.items = data;
+        this.employee.firstName = data[0].firstName;        
+        this.employee.lastName = data.lastName;
+        this.employee.cpf = data.cpf;
+        this.employee.password = data.password;
+        this.employee.passwordConfirmation = data.passwordConfirmation;
+
+        return this.employee;
       },
       (error) => {
-        console.error('Erro ao buscar itens:', error);
+        console.error('Erro ao buscar usuários:', error);
       }
     );
   }
 
-  // Create item
+  // POST - Adiciona um novo usuário
   addUser(): void {
-    this.apiService.postData('employee', this.newItem).subscribe(
-      (data) => {
-        this.items.push(data);
-        this.newItem = {}; // Limpa o formulário
-      },
-      (error) => {
-        console.error('Erro ao adicionar item:', error);
+    if (this.cadastroForm.valid) {
+      if (this.cadastroForm.value.isAdmin){
+        this.cadastroForm.value.admin = true;
       }
-    );
-  }
 
-  // Edit item
-  editItem(item: any): void {
-    this.editingItem = { ...item }; // Cria uma cópia para edição
-  }
-
-  updateUser(): void {
-    if (this.editingItem) {
-      this.apiService.updateData(this.editingItem.id, this.editingItem).subscribe(
+      const formData = this.cadastroForm.value; // Obtém os valores do formulário
+      console.log(formData);
+      this.apiService.postData('employee', formData).subscribe(
         (data) => {
-          const index = this.items.findIndex((i) => i.id === this.editingItem.id);
-          if (index !== -1) {
-            this.items[index] = data;
-          }
-          this.editingItem = null; // Fecha o modo de edição
+          this.listEmployee.push(data); // Adiciona o novo usuário à lista
+          this.cadastroForm.reset(); // Reseta o formulário
+          console.log('Usuário adicionado com sucesso:', data);
         },
         (error) => {
-          console.error('Erro ao atualizar item:', error);
+          console.error('Erro ao adicionar usuário:', error);
+        }
+      );
+    } else {
+      alert('Por favor, preencha todos os campos corretamente.');
+    }
+  }
+
+  // PUT - Atualiza um usuário existente
+  updateUser(): void {
+    if (this.editingUser) {
+      this.apiService.updateData('employees', this.editingUser.id).subscribe(
+        (data) => {
+          const index = this.listEmployee.findIndex((u) => u.id === this.editingUser.id);
+          if (index !== -1) {
+            this.listEmployee[index] = data; // Atualiza o usuário na lista
+          }
+          this.editingUser = null; // Sai do modo de edição
+          console.log('Usuário atualizado:', data);
+        },
+        (error) => {
+          console.error('Erro ao atualizar usuário:', error);
         }
       );
     }
   }
 
-  // Delete item
-  deleteMovie(id: string): void {
+  // DELETE - Remove um usuário
+  deleteUser(id: string): void {
     this.apiService.deleteData('employee', id).subscribe(
       () => {
-        this.items = this.items.filter((item) => item.id !== id);
+        this.listEmployee = this.listEmployee.filter((u) => u.id !== id); // Remove o usuário da lista
+        console.log('Usuário removido:', id);
       },
       (error) => {
-        console.error('Erro ao deletar item:', error);
+        console.error('Erro ao remover usuário:', error);
       }
     );
+  }
+
+  // Seleciona um usuário para edição
+  selectUserForEditing(user: any): void {
+    this.editingUser = { ...user }; // Cria uma cópia do usuário para edição
   }
 }

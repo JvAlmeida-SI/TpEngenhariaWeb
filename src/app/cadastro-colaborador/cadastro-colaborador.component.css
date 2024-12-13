@@ -70,3 +70,7 @@ button:hover {
     align-items: start;
     min-width: max-content;
 }
+
+.chk{
+    display: flex;
+}

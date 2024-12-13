@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ApiService } from './api.service';
+import { ReactiveFormsModule } from '@angular/forms'; 
 
 import { AppRoutingModule } from './app-routing.module';
 import { HomePageComponent } from './home-page/home-page.component';
@@ -38,6 +39,7 @@ import { CadastroColaboradorComponent } from './cadastro-colaborador/cadastro-co
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
+    ReactiveFormsModule,
   ],
   providers: [ApiService],
   bootstrap: [AppComponent]
