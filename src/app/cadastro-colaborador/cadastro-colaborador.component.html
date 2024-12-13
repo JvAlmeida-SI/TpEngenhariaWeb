@@ -20,7 +20,7 @@
 
       <div class="chk">
         <label for="status">Administrador:</label>
-        <input type="checkbox" id="status" name="status" formControlName="isAdmin" [value]="1">
+        <input type="checkbox" id="status" formControlName="isAdmin" [value]="1">
       </div>
     </div>
     
@@ -37,5 +37,6 @@
     </div>
 
     <button type="submit" [disabled]="userForm.invalid">Cadastrar</button>
+    <button type="button" [disabled]="cpf.invalid" (click)="fetchEmployee()">Buscar</button>
   </form>
 </div>

@@ -9,7 +9,11 @@ import { ApiService } from '../api.service';
 export class CadastroProdutoComponent implements OnInit {
 
   items: any[] = [];
-  newItem: any = {};
+  newItem: any = {
+    name: '',
+    price: 0,
+  };
+  
   editingItem: any = null;
 
   constructor(private apiService: ApiService) {}

@@ -11,7 +11,7 @@ export class CadastroColaboradorComponent implements OnInit {
   cadastroForm: FormGroup;
   listEmployee: any[] = [];
   employee: any = {
-    name: '',
+    firstName: '',
     lastName: '',
     cpf: '',
     password: '',
@@ -33,20 +33,22 @@ export class CadastroColaboradorComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  // GET - Busca todos os usuários
-  fetchUsers(): any {
-    this.apiService.getData('employee').subscribe(
+  // GET - Busca usuário
+  fetchEmployee(): void {
+    this.apiService.getData('employees').subscribe(
       (data) => {
-        this.employee.firstName = data[0].firstName;        
-        this.employee.lastName = data.lastName;
-        this.employee.cpf = data.cpf;
-        this.employee.password = data.password;
-        this.employee.passwordConfirmation = data.passwordConfirmation;
-
-        return this.employee;
+        data.forEach(d => {
+          if (d.cpf === this.cadastroForm.get('cpf').value){
+          console.log(d);
+          this.cadastroForm.get('firstName').setValue(d.firstName);
+          this.cadastroForm.get('lastName').setValue(d.lastName);
+          this.cadastroForm.get('password').setValue(d.password);
+          this.cadastroForm.get('isAdmin').setValue(d.isAdmin);
+          }          
+        });        
       },
       (error) => {
-        console.error('Erro ao buscar usuários:', error);
+        console.error('Erro ao buscar colaborador:', error);
       }
     );
   }
@@ -64,10 +66,10 @@ export class CadastroColaboradorComponent implements OnInit {
         (data) => {
           this.listEmployee.push(data); // Adiciona o novo usuário à lista
           this.cadastroForm.reset(); // Reseta o formulário
-          console.log('Usuário adicionado com sucesso:', data);
+          console.log('Colaborador adicionado com sucesso:', data);
         },
         (error) => {
-          console.error('Erro ao adicionar usuário:', error);
+          console.error('Erro ao adicionar colaborador:', error);
         }
       );
     } else {

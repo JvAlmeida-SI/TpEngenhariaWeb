@@ -6,7 +6,7 @@ import { FormBuilder } from '@angular/forms';
 @Injectable()
 
 export class ApiService {
-  private apiUrl: string = 'https://6479-177-74-239-153.ngrok-free.app';
+  private apiUrl: string = 'http://localhost:8080';
 
   constructor(private http: HttpClient) { }
 

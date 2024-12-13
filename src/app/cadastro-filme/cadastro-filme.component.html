@@ -1,41 +1,40 @@
 <div class="content">
-  <form id="cadastroFilme">
+  <form [formGroup]="cadastroForm" (ngSubmit)="addMovie()">
       <div class="conjunto">
         <div class="input">
           <label for="nome">Nome:</label>
-          <input type="text" id="nome" name="title" required><br><br>
+          <input type="text" id="nome" formControlName="title" required><br><br>
         </div>
 
         <div class="sinopse">
           <label for="sinopse">Sinopse:</label>
-          <input type="text" id="duracao" name="synopsis" required><br><br>
+          <input type="text" id="duracao" formControlName="synopsis" required><br><br>
         </div>        
       </div>
       
       <div class="conjunto">
         <div class="input">
           <label for="faixaEtaria">Faixa etária:</label>
-          <input type="text" id="faixaEtaria" name="minimumAge" required><br><br>
+          <input type="text" id="faixaEtaria" formControlName="minimumAge" required><br><br>
         </div>
 
         <div class="input">
           <label for="duracao">Duração:</label>
-          <input type="text" id="duracao" name="duration" required><br><br>
+          <input type="text" id="duracao" formControlName="duration" required><br><br>
+        </div>
+      </div>
+
+      <div class="conjunto">
+        <div class="input">
+          <label for="genero">Código do gênero:</label>
+          <input type="text" id="genero" formControlName="genreID" required><br><br>
         </div>
 
         <div class="input">
-          <label for="genero">Código do gênero:</label>
-          <input type="text" id="genero" name="genreID" required><br><br>
+          <label for="diretor">Diretor:</label>
+          <input type="text" id="diretor" formControlName="director" required><br><br>
         </div>
       </div>
-    <button type="submit">Cadastrar</button>
+    <button type="submit" [disabled]="userForm.invalid">Cadastrar</button>
   </form>
-
-  <script>
-      document.getElementById('cadastroForm').addEventListener('submit', function(event) {
-          event.preventDefault();
-          // Aqui você pode adicionar a lógica para processar o formulário
-          alert('Cadastro efetuado com sucesso!');
-      });
-  </script>
 </div>
