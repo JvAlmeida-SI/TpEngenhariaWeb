@@ -62,9 +62,9 @@ export class CadastroFilmeComponent implements OnInit {
   }
 
   // Edit item
-  editItem(item: any): void {
-    this.editingItem = { ...item }; // Cria uma cópia para edição
-  }
+  // editItem(item: any): void {
+  //   this.editingItem = { ...item }; // Cria uma cópia para edição
+  // }
 
   // updateMovie(): void {
   //   if (this.editingItem) {
