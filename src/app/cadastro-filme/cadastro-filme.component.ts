@@ -8,19 +8,19 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
   styleUrls: ['./cadastro-filme.component.css']
 })
 export class CadastroFilmeComponent implements OnInit {
-  cadastroForm: FormGroup;
-    listMovies: any[] = [];
-    movie: any = {
-      title: '',
-      synopsis: '',
-      duration: '',
-      minimumAge: '',
-      genreID: '',
-    };
-    editingUser: any = null;
+  registerForm: FormGroup;
+  listMovies: any[] = [];
+  movie: any = {
+    title: '',
+    synopsis: '',
+    duration: '',
+    minimumAge: '',
+    genreID: '',
+  };
+  editingUser: any = null;
   
   constructor(private formBuilder: FormBuilder, private apiService: ApiService) {
-    this.cadastroForm = this.formBuilder.group({
+    this.registerForm = this.formBuilder.group({
       title: ['', [Validators.required]],
       synopsis: ['', [Validators.required]],
       duration: ['', [Validators.required]],
@@ -45,11 +45,11 @@ export class CadastroFilmeComponent implements OnInit {
   }
 
   addMovie(): void {
-    console.log(this.cadastroForm.value);
-    if (this.cadastroForm.valid) {
-      const formData = this.cadastroForm.value; // Obtém os valores do formulário
+    console.log(this.registerForm.value);
+    if (this.registerForm.valid) {
+      const formData = this.registerForm.value; // Obtém os valores do formulário
       this.apiService.postData('movie', formData).subscribe(
-        (data) => {this.cadastroForm.reset(); // Reseta o formulário
+        (data) => {this.registerForm.reset(); // Reseta o formulário
           console.log('Filme adicionado com sucesso:', data);
         },
         (error) => {
@@ -60,28 +60,6 @@ export class CadastroFilmeComponent implements OnInit {
       alert('Por favor, preencha todos os campos corretamente.');
     }
   }
-
-  // Edit item
-  // editItem(item: any): void {
-  //   this.editingItem = { ...item }; // Cria uma cópia para edição
-  // }
-
-  // updateMovie(): void {
-  //   if (this.editingItem) {
-  //     this.apiService.updateData(this.editingItem.id, this.editingItem).subscribe(
-  //       (data) => {
-  //         const index = this.movie.findIndex((i) => i.id === this.editingItem.id);
-  //         if (index !== -1) {
-  //           this.movie[index] = data;
-  //         }
-  //         this.editingItem = null; // Fecha o modo de edição
-  //       },
-  //       (error) => {
-  //         console.error('Erro ao atualizar item:', error);
-  //       }
-  //     );
-  //   }
-  // }
 
   // Delete item
   deleteMovie(id: string): void {

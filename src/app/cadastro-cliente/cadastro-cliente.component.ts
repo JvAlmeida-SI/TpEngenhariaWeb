@@ -8,7 +8,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
   styleUrls: ['./cadastro-cliente.component.css']
 })
 export class CadastroClienteComponent implements OnInit {
-  cadastroForm: FormGroup;
+  registerForm: FormGroup;
   listClient: any[] = [];
   client: any = {
     fistName: '',
@@ -20,7 +20,7 @@ export class CadastroClienteComponent implements OnInit {
   editingItem: any = null;
 
   constructor(private formBuilder: FormBuilder, private apiService: ApiService) {
-    this.cadastroForm = this.formBuilder.group({
+    this.registerForm = this.formBuilder.group({
       firstName: ['', [Validators.required]],
       lastName: ['', [Validators.required]],
       cpf: ['', [Validators.required, Validators.pattern(/^\d{11}$/)]],
@@ -37,10 +37,10 @@ export class CadastroClienteComponent implements OnInit {
       (data) => {
         console.log(data);
         data.forEach(d => {
-          if (d.cpf === this.cadastroForm.get('cpf').value){
-          this.cadastroForm.get('firstName').setValue(d.firstName);
-          this.cadastroForm.get('lastName').setValue(d.lastName);
-          this.cadastroForm.get('password').setValue(d.password);
+          if (d.cpf === this.registerForm.get('cpf').value){
+          this.registerForm.get('firstName').setValue(d.firstName);
+          this.registerForm.get('lastName').setValue(d.lastName);
+          this.registerForm.get('password').setValue(d.password);
           }          
         });        
       },
@@ -52,13 +52,13 @@ export class CadastroClienteComponent implements OnInit {
 
   // POST - Adiciona um novo usuário
   addUser(): void {
-    if (this.cadastroForm.valid) {
-      const formData = this.cadastroForm.value; // Obtém os valores do formulário
+    if (this.registerForm.valid) {
+      const formData = this.registerForm.value; // Obtém os valores do formulário
       console.log(formData);
       this.apiService.postData('client', formData).subscribe(
         (data) => {
           this.listClient.push(data);
-          this.cadastroForm.reset();
+          this.registerForm.reset();
           console.log('Cliente adicionado com sucesso:', data);
         },
         (error) => {

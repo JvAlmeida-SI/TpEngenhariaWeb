@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../api.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-cadastro-produto',
@@ -7,7 +8,7 @@ import { ApiService } from '../api.service';
   styleUrls: ['./cadastro-produto.component.css']
 })
 export class CadastroProdutoComponent implements OnInit {
-
+  registerForm: FormGroup;
   items: any[] = [];
   newItem: any = {
     name: '',
@@ -16,7 +17,13 @@ export class CadastroProdutoComponent implements OnInit {
   
   editingItem: any = null;
 
-  constructor(private apiService: ApiService) {}
+  constructor(private formBuilder: FormBuilder, private apiService: ApiService) {
+      this.registerForm = this.formBuilder.group({
+        name: ['', [Validators.required]],
+        price: ['', [Validators.required]],
+        quantity: [10, [Validators.required]],
+      });
+    }
 
   ngOnInit(): void {
     this.fetchProducts();
@@ -26,7 +33,8 @@ export class CadastroProdutoComponent implements OnInit {
   fetchProducts(): void {
     this.apiService.getData('products').subscribe(
       (data) => {
-        this.items = data;
+        this.registerForm.get('name').setValue(data.name);
+        this.registerForm.get('price').setValue(data.price);
       },
       (error) => {
         console.error('Erro ao buscar itens:', error);
@@ -36,10 +44,10 @@ export class CadastroProdutoComponent implements OnInit {
 
   // Create item
   addProduct(): void {
-    this.apiService.postData('product', this.newItem).subscribe(
+    this.apiService.postData('product', this.registerForm.value).subscribe(
       (data) => {
-        this.items.push(data);
-        this.newItem = {}; // Limpa o formulário
+        console.log('Produto adicionado com sucesso: ' + data);
+        this.registerForm.reset();
       },
       (error) => {
         console.error('Erro ao adicionar item:', error);
@@ -47,31 +55,10 @@ export class CadastroProdutoComponent implements OnInit {
     );
   }
 
-  // Edit item
-  editItem(item: any): void {
-    this.editingItem = { ...item }; // Cria uma cópia para edição
-  }
-
-  updateProduct(): void {
-    if (this.editingItem) {
-      this.apiService.updateData(this.editingItem.id, this.editingItem).subscribe(
-        (data) => {
-          const index = this.items.findIndex((i) => i.id === this.editingItem.id);
-          if (index !== -1) {
-            this.items[index] = data;
-          }
-          this.editingItem = null; // Fecha o modo de edição
-        },
-        (error) => {
-          console.error('Erro ao atualizar item:', error);
-        }
-      );
-    }
-  }
 
   // Delete item
   deleteProduct(id: string): void {
-    this.apiService.deleteData('product', id).subscribe(
+    this.apiService.deleteData('product', this.registerForm.get('name').value).subscribe(
       () => {
         this.items = this.items.filter((item) => item.id !== id);
       },

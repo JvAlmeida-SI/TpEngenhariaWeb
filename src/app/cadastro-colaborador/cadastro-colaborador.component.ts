@@ -8,7 +8,7 @@ import { ApiService } from '../api.service';
   styleUrls: ['./cadastro-colaborador.component.css']
 })
 export class CadastroColaboradorComponent implements OnInit {
-  cadastroForm: FormGroup;
+  registerForm: FormGroup;
   listEmployee: any[] = [];
   employee: any = {
     firstName: '',
@@ -20,7 +20,7 @@ export class CadastroColaboradorComponent implements OnInit {
   editingUser: any = null;
 
   constructor(private formBuilder: FormBuilder, private apiService: ApiService) {
-    this.cadastroForm = this.formBuilder.group({
+    this.registerForm = this.formBuilder.group({
       firstName: ['', [Validators.required]],
       lastName: ['', [Validators.required]],
       cpf: ['', [Validators.required, Validators.pattern(/^\d{11}$/)]],
@@ -38,12 +38,11 @@ export class CadastroColaboradorComponent implements OnInit {
     this.apiService.getData('employees').subscribe(
       (data) => {
         data.forEach(d => {
-          if (d.cpf === this.cadastroForm.get('cpf').value){
+          if (d.cpf === this.registerForm.get('cpf').value){
           console.log(d);
-          this.cadastroForm.get('firstName').setValue(d.firstName);
-          this.cadastroForm.get('lastName').setValue(d.lastName);
-          this.cadastroForm.get('password').setValue(d.password);
-          this.cadastroForm.get('isAdmin').setValue(d.isAdmin);
+          this.registerForm.get('firstName').setValue(d.firstName);
+          this.registerForm.get('lastName').setValue(d.lastName);
+          this.registerForm.get('isAdmin').setValue(d.isAdmin);
           }          
         });        
       },
@@ -55,17 +54,15 @@ export class CadastroColaboradorComponent implements OnInit {
 
   // POST - Adiciona um novo usuário
   addUser(): void {
-    if (this.cadastroForm.valid) {
-      if (this.cadastroForm.value.isAdmin){
-        this.cadastroForm.value.admin = true;
+    if (this.registerForm.valid) {
+      if (this.registerForm.value.isAdmin){
+        this.registerForm.value.admin = true;
       }
 
-      const formData = this.cadastroForm.value; // Obtém os valores do formulário
-      console.log(formData);
+      const formData = this.registerForm.value; // Obtém os valores do formulário
       this.apiService.postData('employee', formData).subscribe(
         (data) => {
-          this.listEmployee.push(data); // Adiciona o novo usuário à lista
-          this.cadastroForm.reset(); // Reseta o formulário
+          this.registerForm.reset(); // Reseta o formulário
           console.log('Colaborador adicionado com sucesso:', data);
         },
         (error) => {
@@ -75,42 +72,5 @@ export class CadastroColaboradorComponent implements OnInit {
     } else {
       alert('Por favor, preencha todos os campos corretamente.');
     }
-  }
-
-  // PUT - Atualiza um usuário existente
-  updateUser(): void {
-    if (this.editingUser) {
-      this.apiService.updateData('employees', this.editingUser.id).subscribe(
-        (data) => {
-          const index = this.listEmployee.findIndex((u) => u.id === this.editingUser.id);
-          if (index !== -1) {
-            this.listEmployee[index] = data; // Atualiza o usuário na lista
-          }
-          this.editingUser = null; // Sai do modo de edição
-          console.log('Usuário atualizado:', data);
-        },
-        (error) => {
-          console.error('Erro ao atualizar usuário:', error);
-        }
-      );
-    }
-  }
-
-  // DELETE - Remove um usuário
-  deleteUser(id: string): void {
-    this.apiService.deleteData('employee', id).subscribe(
-      () => {
-        this.listEmployee = this.listEmployee.filter((u) => u.id !== id); // Remove o usuário da lista
-        console.log('Usuário removido:', id);
-      },
-      (error) => {
-        console.error('Erro ao remover usuário:', error);
-      }
-    );
-  }
-
-  // Seleciona um usuário para edição
-  selectUserForEditing(user: any): void {
-    this.editingUser = { ...user }; // Cria uma cópia do usuário para edição
   }
 }

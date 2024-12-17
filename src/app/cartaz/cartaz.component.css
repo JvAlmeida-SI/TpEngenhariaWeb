@@ -13,7 +13,7 @@ h2 {
 }
 
 form {
-    background-color: black;
+    background-color: rgb(15, 61, 71);
     color: white;
     padding: 20px;
     margin: 20px auto;
@@ -37,13 +37,13 @@ form button {
 }
 
 form button {
-    background-color: black;
+    background-color: rgb(15, 61, 71);
     color: white;
     cursor: pointer;
 }
 
 form button:hover {
-    background-color: black;
+    background-color: rgb(15, 61, 71);
 }
 
 table {
@@ -65,7 +65,7 @@ td {
 }
 
 th {
-    background-color: black;
+    background-color: rgb(15, 61, 71);
     color: white;
 }
 
@@ -73,41 +73,17 @@ tbody tr:nth-child(even) {
     background-color: #f2f2f2;
 }
 
-/* div{
-    background-color: #7A5CFA;
+button {
+    max-width: fit-content;
+    background-color: rgb(15, 61, 71);
+    animation: fadein .5s .2s linear both;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
     color: white;
-    min-height: 50vh;
-    padding: 20px;
-}
-
-h1{
-    padding-left: 100px;
-}
-
-.filmes ul {
-    display: flex;
     align-items: center;
-    list-style: none;
-    justify-content: center;
-    padding: 10px 10px;
-    gap: 10px;
 }
 
-li{
-    max-width: 300px;
-    max-height: 200px;
-    padding-left: 10px;
+button:hover {
+    cursor: pointer;
 }
-
-li a {
-    max-width: inherit;
-    max-height: inherit;
-    display: block;
-}
-
-li a img {
-    max-width: inherit;
-    max-height: inherit;
-    object-fit: center;
-    object-position: center center;
-} */

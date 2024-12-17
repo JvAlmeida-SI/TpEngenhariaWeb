@@ -25,7 +25,7 @@ h1{
 
 button{
     max-width: fit-content;
-    background-color: black;
+    background-color: rgb(15, 61, 71);
     animation: fadein .5s .2s linear both;
     padding: 10px 20px;
     border-radius: 5px;

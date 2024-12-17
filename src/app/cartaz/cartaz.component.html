@@ -1,21 +1,21 @@
 <div>
-  <h1>Em cartaz</h1>
+  <h1>Filmes em cartaz</h1>
   <div class="filmes">
       <table border="1">
         <thead>
           <tr>
             <th>Título</th>
-            <th>Sinopse</th>
+            <th>Gênero</th>
             <th>Duração</th>
-            <th>Idade Mínima</th>
+            <th>Carrinho</th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let movie of movies">
             <td>{{ movie.title }}</td>
             <td>{{ movie.synopsis }}</td>
-            <td>{{ movie.duration }}</td>
-            <td>{{ movie.age }}</td>
+            <td>{{ movie.duration }} min</td>
+            <td><button>Adicionar</button></td>
           </tr>
         </tbody>
     </table>

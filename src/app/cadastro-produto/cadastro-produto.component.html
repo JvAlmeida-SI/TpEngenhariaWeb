@@ -1,25 +1,18 @@
 <div class="content">
-  <form id="cadastroProduto">
+  <form [formGroup]="cadastroForm" (ngSubmit)="addProduct()">
       <div class="conjunto">
         <div class="input">
           <label for="nome">Nome:</label>
-          <input type="text" id="nome" name="nome" required><br><br>
+          <input type="text" id="nome" formControlName="name" required><br><br>
         </div>
 
         <div class="input">
           <label for="preco">Preço:</label>
-          <input type="text" id="preco" name="preco" required><br><br>
+          <input type="text" id="preco" formControlName="price" required><br><br>
         </div>
       </div>
 
-    <button type="submit">Cadastrar</button>
+    <button type="submit" [disabled]="userForm.invalid">Cadastrar</button>
+    <button type="button" (click)="fetchProduct()">Buscar</button>
   </form>
-
-  <script>
-      document.getElementById('cadastroForm').addEventListener('submit', function(event) {
-          event.preventDefault();
-          // Aqui você pode adicionar a lógica para processar o formulário
-          alert('Cadastro efetuado com sucesso!');
-      });
-  </script>
 </div>
